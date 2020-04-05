@@ -1,0 +1,13 @@
+version: "3"
+services:
+    work:
+        user: "1000:1000"
+        build: . # ビルドに使用するDockerfileがあるディレクトリ指定
+        tty: true # コンテナの起動永続化
+            - /etc/group:/etc/group:ro
+            - /etc/passwd:/etc/passwd:ro
+            - ../:/work
+            - /.aws:/root/.aws
+        ports:
+            - "8888:8888"
+        command: /bin/sh -c "while sleep 1000; do :; done"
